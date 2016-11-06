@@ -233,7 +233,7 @@ void GetData(THANDLE hTdb, string date, int type) {
                             int n_start_date = atol((date + "01").c_str());
                             int n_end_date = atol((date + "31").c_str());
                             GetKData(hTdb, pCode[i].chWindCode, pCode[i].chMarket, n_start_date, n_end_date, CYC_DAY,
-                                     0, 0, 0, dir + string(pCode[i].chCode) + ".csv");
+                                     0, 1, 0, dir + string(pCode[i].chCode) + ".csv");
                         default:
                             cerr << "unkown type!" << endl;
                     }
