@@ -210,6 +210,9 @@ void GetData(THANDLE hTdb, string date, int type) {
                 if ((pCode[i].nType == 0x10) || (pCode[i].nType == 0x11) || (pCode[i].nType == 0x12)) {
                     printf("code: %s, type: %d\n", pCode[i].chCode, pCode[i].nType);
 
+                    int n_start_date = 0;
+                    int n_end_date = 0;
+
                     switch (type) {
                         case TYPE_Tick:
                             GetStockTickData(hTdb, pCode[i].chWindCode, pCode[i].chMarket, n_date,
@@ -230,10 +233,11 @@ void GetData(THANDLE hTdb, string date, int type) {
                                      0, 0, 0, dir + string(pCode[i].chCode) + ".csv");
                             break;
                         case TYPE_KLine_1day:
-                            int n_start_date = atol((date + "01").c_str());
-                            int n_end_date = atol((date + "31").c_str());
+                            n_start_date = atol((date + "01").c_str());
+                            n_end_date = atol((date + "31").c_str());
                             GetKData(hTdb, pCode[i].chWindCode, pCode[i].chMarket, n_start_date, n_end_date, CYC_DAY,
                                      0, 1, 0, dir + string(pCode[i].chCode) + ".csv");
+                            break;
                         default:
                             cerr << "unkown type!" << endl;
                     }
